@@ -12,13 +12,22 @@
   </property>
   <property name="font">
    <font>
-    <family>Blackadder ITC</family>
+    <family>Bodoni MT</family>
    </font>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>800</width>
+     <height>546</height>
+    </size>
+   </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QGraphicsView" name="graphicsViewCanvas">
@@ -38,7 +47,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>29</height>
+     <height>27</height>
     </rect>
    </property>
   </widget>

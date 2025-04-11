@@ -1,14 +1,13 @@
-// TestNode.cpp
+// testnode.cpp
+#include "testnode.h"
 
-#include "TestNode.h"
-#include <QDebug>
-
-TestNode::TestNode()
-    : BaseNode("Test Node")
+TestNode::TestNode() : BaseNode("Test Node")
 {
+    addInputPort("In");
+    addOutputPort("Out");
 }
 
 void TestNode::process()
 {
-    qDebug() << "TestNode is being processed.";
+    // Example logic (empty for now)
 }

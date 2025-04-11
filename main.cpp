@@ -7,7 +7,7 @@ int main(int argc, char *argv[]) {
 
     MainWindow window;
     window.setWindowTitle("Node-Based Image Editor");
-    window.resize(1280, 720);
+    window.resize(1200, 720);
     window.show();
 
     return app.exec();

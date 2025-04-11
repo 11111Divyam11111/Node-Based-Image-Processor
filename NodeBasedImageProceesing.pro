@@ -11,10 +11,12 @@ CONFIG += c++17
 SOURCES += \
     BaseNode.cpp \
     CanvasWidget.cpp \
+    Connection.cpp \
     NodeCanvas.cpp \
     PropertiesPanelWidget.cpp \
     main.cpp \
     mainwindow.cpp \
+    port.cpp \
     testnode.cpp
 
 HEADERS += \
@@ -25,6 +27,7 @@ HEADERS += \
     NodeSocket.h \
     PropertiesPanelWidget.h \
     mainwindow.h \
+    port.h \
     testnode.h
 
 FORMS += \
