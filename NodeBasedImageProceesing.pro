@@ -14,6 +14,7 @@ SOURCES += \
     Connection.cpp \
     NodeCanvas.cpp \
     PropertiesPanelWidget.cpp \
+    connectiondragmanager.cpp \
     main.cpp \
     mainwindow.cpp \
     port.cpp \
@@ -25,7 +26,9 @@ HEADERS += \
     Connection.h \
     NodeCanvas.h \
     NodeSocket.h \
+    PortType.h \
     PropertiesPanelWidget.h \
+    connectiondragmanager.h \
     mainwindow.h \
     port.h \
     testnode.h

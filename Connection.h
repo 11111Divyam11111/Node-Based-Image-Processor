@@ -3,15 +3,17 @@
 #define CONNECTION_H
 
 #include <QGraphicsPathItem>
-#include "NodeSocket.h"
+#include "port.h"
 
 class Connection : public QGraphicsPathItem {
 public:
-    Connection(NodeSocket* from, NodeSocket* to);
-    void updatePath();
+    Connection(Port* from, Port* to = nullptr);
 
-    NodeSocket* fromSocket;
-    NodeSocket* toSocket;
+    void updatePath();
+    void updatePath(const QPointF& fromPos, const QPointF& toPos); // Overload for dragging
+
+    Port* fromSocket;
+    Port* toSocket;
 };
 
 #endif // CONNECTION_H

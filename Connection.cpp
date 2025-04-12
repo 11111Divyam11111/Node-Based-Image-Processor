@@ -1,24 +1,28 @@
-// Connection.cpp
 #include "Connection.h"
 #include <QPainterPath>
 #include <QPen>
 
-Connection::Connection(NodeSocket* from, NodeSocket* to)
-    : fromSocket(from), toSocket(to) {
-    setZValue(-1); // Make sure connections render below nodes
-    setPen(QPen(Qt::black, 2));
+Connection::Connection(Port* from, Port* to)
+    : fromSocket(from), toSocket(to)
+{
+    setZValue(0); // Render below other items
+    setPen(QPen(Qt::blue, 2));
     updatePath();
 }
 
 void Connection::updatePath() {
-    if (!fromSocket || !toSocket) return;
+    if (!fromSocket) return;
 
-    QPointF start = fromSocket->scenePos();
-    QPointF end = toSocket->scenePos();
+    QPointF p1 = fromSocket->scenePos();
+    QPointF p2 = toSocket ? toSocket->scenePos() : p1;
 
-    QPainterPath path(start);
-    qreal dx = (end.x() - start.x()) * 0.5;
-    path.cubicTo(start.x() + dx, start.y(), end.x() - dx, end.y(), end.x(), end.y());
+    updatePath(p1, p2);
+}
 
+void Connection::updatePath(const QPointF& fromPos, const QPointF& toPos) {
+    QPainterPath path(fromPos);
+    QPointF ctrl1 = fromPos + QPointF(50, 0);
+    QPointF ctrl2 = toPos - QPointF(50, 0);
+    path.cubicTo(ctrl1, ctrl2, toPos);
     setPath(path);
 }

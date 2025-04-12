@@ -15,9 +15,16 @@ MainWindow::MainWindow(QWidget *parent)
     nodeCanvas = new NodeCanvas(this);
     ui->graphicsViewCanvas->setScene(nodeCanvas->getScene());
 
-    TestNode *testNode = new TestNode();
-    testNode->setPos(100, 100);
-    nodeCanvas->getScene()->addItem(testNode);
+    BaseNode* node1 = new TestNode();
+    node1->addOutputPort("Out");
+    nodeCanvas->getScene()->addItem(node1);
+    node1->setPos(50, 100);
+
+    BaseNode* node2 = new TestNode();
+    node2->addInputPort("In");
+    nodeCanvas->getScene()->addItem(node2);
+    node2->setPos(300, 100); // place to the right of node1
+
 }
 
 MainWindow::~MainWindow()

@@ -2,25 +2,25 @@
 #ifndef PORT_H
 #define PORT_H
 
-#include <QGraphicsItem>
-#include <QString>
-#include <QGraphicsTextItem>
+#include <QGraphicsEllipseItem>
+#include "PortType.h"
 
-enum class PortType { Input, Output };
-
-class Port : public QGraphicsItem {
+class Port : public QGraphicsEllipseItem {
 public:
     Port(PortType type, QGraphicsItem* parent = nullptr);
 
-    void setLabel(const QString& text);
+    void setLabel(const QString& label);
+    PortType getPortType() const;
 
-    QRectF boundingRect() const override;
-    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr) override;
+protected:
+    void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
 
 private:
-    PortType portType;
-    QString label;
-    QGraphicsTextItem* labelItem;
+    PortType m_type;
+    QGraphicsTextItem* m_label;
+    bool m_dragStarted;
 };
 
 #endif // PORT_H

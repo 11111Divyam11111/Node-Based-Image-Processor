@@ -1,34 +1,46 @@
 // BaseNode.h
+
 #ifndef BASENODE_H
 #define BASENODE_H
 
 #include <QGraphicsItem>
 #include <QGraphicsTextItem>
 #include <QVector>
+#include <QString>
+
 #include "port.h"
 
 class BaseNode : public QGraphicsItem
 {
 public:
-    BaseNode(const QString &name);
+    // Constructor
+    BaseNode(const QString& name);
+
+    // Virtual destructor
     virtual ~BaseNode() = default;
 
-    void addInputPort(const QString &label);
-    void addOutputPort(const QString &label);
+    // Virtual processing function to override in child nodes
+    virtual void process() {}
 
+    // Add ports
+    void addInputPort(const QString& label);
+    void addOutputPort(const QString& label);
+
+    // Qt painting functions
     QRectF boundingRect() const override;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
-
-    virtual void process() = 0; // Must be implemented by derived classes
+    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr) override;
 
 protected:
+    // Layout helper
+    void layoutPorts();
+
+    // Data
+    QString nodeName;
     QRectF nodeRect;
-    QGraphicsTextItem *titleText;
+    QGraphicsTextItem* titleText;
 
     QVector<Port*> inputPorts;
     QVector<Port*> outputPorts;
-
-    void layoutPorts();  // Arrange ports on sides
 };
 
 #endif // BASENODE_H
