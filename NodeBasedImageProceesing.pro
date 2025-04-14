@@ -1,12 +1,6 @@
 QT       += core gui
-
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
 CONFIG += c++17
-
-# You can make your code fail to compile if it uses deprecated APIs.
-# In order to do so, uncomment the following line.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
     BaseNode.cpp \
@@ -15,6 +9,9 @@ SOURCES += \
     NodeCanvas.cpp \
     PropertiesPanelWidget.cpp \
     connectiondragmanager.cpp \
+    grayscalenode.cpp \
+    imageinputnode.cpp \
+    imageviewernode.cpp \
     main.cpp \
     mainwindow.cpp \
     port.cpp \
@@ -29,6 +26,9 @@ HEADERS += \
     PortType.h \
     PropertiesPanelWidget.h \
     connectiondragmanager.h \
+    grayscalenode.h \
+    imageinputnode.h \
+    imageviewernode.h \
     mainwindow.h \
     port.h \
     testnode.h
@@ -36,7 +36,14 @@ HEADERS += \
 FORMS += \
     mainwindow.ui
 
-# Default rules for deployment.
+
+INCLUDEPATH += D:/divya/Documents/opencv/build/include
+DEPENDPATH += D:/divya/Documents/opencv/build/include
+
+LIBS += -LD:/divya/Documents/opencv/build/x64/vc16/lib \
+            -lopencv_world4110
+
+# Deployment
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target

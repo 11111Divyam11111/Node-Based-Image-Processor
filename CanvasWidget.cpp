@@ -3,7 +3,7 @@
 
 CanvasWidget::CanvasWidget(QWidget *parent)
     : QWidget(parent) {
-    setMinimumSize(800, 600);
+    setMinimumSize(1920, 1080);
     setStyleSheet("background-color: #1e1e1e;");
 }
 

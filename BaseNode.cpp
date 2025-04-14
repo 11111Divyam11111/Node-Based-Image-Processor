@@ -45,9 +45,9 @@ void BaseNode::layoutPorts()
         outputPorts[i]->setPos(nodeRect.width() - 12, 25 + i * spacing);
 }
 
-QRectF BaseNode::boundingRect() const
-{
-    return nodeRect.adjusted(-2, -2, 2, 2);
+QRectF BaseNode::boundingRect() const {
+    // Increase default node size here (e.g. 300x180)
+    return QRectF(0, 0, 600, 400);
 }
 
 void BaseNode::paint(QPainter* painter, const QStyleOptionGraphicsItem*, QWidget*)

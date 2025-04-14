@@ -2,9 +2,12 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
-#include "nodecanvas.h"
+#include "imageinputnode.h"
+#include "NodeCanvas.h"
 #include "TestNode.h"
+#include "imageinputnode.h"
+#include "grayscalenode.h"
+#include "imageviewernode.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -15,15 +18,36 @@ MainWindow::MainWindow(QWidget *parent)
     nodeCanvas = new NodeCanvas(this);
     ui->graphicsViewCanvas->setScene(nodeCanvas->getScene());
 
-    BaseNode* node1 = new TestNode();
-    node1->addOutputPort("Out");
-    nodeCanvas->getScene()->addItem(node1);
-    node1->setPos(50, 100);
+    ImageInputNode* inputNode = new ImageInputNode();
+    GrayscaleNode* grayNode = new GrayscaleNode();
+    ImageViewerNode* viewNode = new ImageViewerNode();
 
-    BaseNode* node2 = new TestNode();
-    node2->addInputPort("In");
-    nodeCanvas->getScene()->addItem(node2);
-    node2->setPos(300, 100); // place to the right of node1
+    nodeCanvas->getScene()->addItem(inputNode);
+    nodeCanvas->getScene()->addItem(grayNode);
+    nodeCanvas->getScene()->addItem(viewNode);
+
+    inputNode->setPos(200, 100);
+    grayNode->setPos(400, 100);
+    viewNode->setPos(600, 100);
+
+    inputNode->setNextNode(grayNode);
+    grayNode->setNextNode(viewNode);
+
+    // Load image to trigger the pipeline
+    inputNode->loadImage("D:/Idk/Me.jpg");
+
+    ImageViewerNode* viewerNode = new ImageViewerNode();
+    viewerNode->setImage(QImage("D:/Idk/Me.jpg")); // TEMP for testing
+    nodeCanvas->getScene()->addItem(viewerNode);
+    viewerNode->setPos(0, 100);
+
+    ui->graphicsViewCanvas->setScene(nodeCanvas->getScene());
+
+    // Disable scrollbars
+    ui->graphicsViewCanvas->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsViewCanvas->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    ui->graphicsViewCanvas->centerOn(0, 0);
 
 }
 

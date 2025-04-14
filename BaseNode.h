@@ -27,7 +27,7 @@ public:
     void addOutputPort(const QString& label);
 
     // Qt painting functions
-    QRectF boundingRect() const override;
+    virtual QRectF boundingRect() const override;
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr) override;
 
 protected:
