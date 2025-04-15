@@ -11,7 +11,7 @@ An interactive, visual image processing tool built with Qt and C++, using a node
 - 🌈 Grayscale Conversion — Convert any image to grayscale
 - 📈 Brightness/Contrast Control (planned) — Adjust brightness and contrast
 - 🔌 Interactive Connection Wiring — Connect ports via dynamic wires
-- 
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
  🧠 Architecture Overview
